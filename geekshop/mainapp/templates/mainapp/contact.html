@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'mainapp/base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
+{% block title %}
     <title>Interior product</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700&display=swap" rel="stylesheet"> </head>
+{% endblock %}
 
-<body>
+{% block content %}
     <div class="wrapper">
         <div class="top-nav padding-site">
             <div class="navbar clearfix">
-                <a href="index.html"><img src="../../../static/img/logo.svg" alt="Interior"></a>
-                <ul class="menu clearfix">
-                    <li class="nav-list"><a class="nav-link" href="/">HOME</a></li>
-                    <li class="nav-list"><a class="nav-link" href="/products/">PRODUCTS</a></li>
-                    <li class="nav-list"><a class="nav-link" href="#">HISTORY</a></li>
-                    <li class="nav-list"><a class="nav-link" href="#">SHOWROOM</a></li>
-                    <li class="nav-list"><a class="nav-link" href="/contact/">CONTACT</a></li>
-                    <li class="nav-list">
-                        <a class="nav-search" href="#"><img src="../../../static/img/search.svg" alt="Search"></a>
-                    </li>
-                </ul>
+                {% include 'mainapp/includes/inc_menu.html' %}
                 <h2 class="nav-content">Contact Us</h2> </div>
         </div>
         <div class="location clearfix">
-            <div class="location-block"> <img src="../../../static/img/geo.png" alt="" class="location-tag">
+            <div class="location-block"> <img src="{% static '/img/geo.png' %}" alt="" class="location-tag">
                 <h3 class="location-name">California</h3>
                 <p class="location-details">Phone:
                     <br><span class="l-bold">1900 - 1234 -5678</span>
@@ -36,7 +24,7 @@
                     <br>Address:
                     <br><span class="l-address">12 W 1st St, 90001 Los Angeles, California</span></p>
             </div>
-            <div class="location-block"> <img src="../../../static/img/geo.png" alt="" class="location-tag">
+            <div class="location-block"> <img src="{% static '/img/geo.png' %}" alt="" class="location-tag">
                 <h3 class="location-name">California</h3>
                 <p class="location-details">Phone:
                     <br><span class="l-bold">1900 - 1234 -5678</span>
@@ -47,7 +35,7 @@
                     <br>Address:
                     <br><span class="l-address">12 W 1st St, 90001 Los Angeles, California</span></p>
             </div>
-            <div class="location-block location-block-last"> <img src="../../../static/img/geo.png" alt="" class="location-tag">
+            <div class="location-block location-block-last"> <img src="{% static '/img/geo.png' %}" alt="" class="location-tag">
                 <h3 class="location-name">California</h3>
                 <p class="location-details">Phone:
                     <br><span class="l-bold">1900 - 1234 -5678</span>
@@ -86,13 +74,11 @@
                 <input type="text" class="suscribe-input" placeholder="your email address"> </div>
         </div>
         <div class="copyright-block padding-site">
-            <div class="copyright-text">&copy;&nbsp;Copyright - INTERIOR 2016. All Rights Reserved.</div>
+            <div class="copyright-text">&copy;&nbsp;Copyright - INTERIOR {% now "Y" %}. All Rights Reserved.</div>
             <div class="social">
-                <a href=""><img src="../../../static/img/social-links.png" alt=""></a>
+                <a href=""><img src="{% static '/img/social-links.png' %}" alt=""></a>
             </div>
             <div class="copyright-text">Terms&nbsp;&amp;&nbsp;Conditions / Privacy policy&nbsp;&amp;&nbsp;Cookies</div>
         </div>
     </div>
-</body>
-
-</html>
+{% endblock %}
