@@ -321,10 +321,6 @@ a.img-link img {
     margin: 30px 30px 0px 0px;
 }
 
-a.img-link-last img {
-    margin-right: 0px;
-}
-
 .slider-bottom {
     background-image: url(../img/slider.jpg);
     height: 800px;
@@ -525,6 +521,10 @@ a.exclusive-link {
 
 .products-block {
     margin-top: 20px;
+}
+
+.products-block:nth-child(3n) {
+    margin-right: 0px;
 }
 
 .title-list {
