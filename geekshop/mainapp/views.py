@@ -8,7 +8,15 @@ def main(request):
 
 
 def products(request):
-    return render(request, 'mainapp/products.html')
+    links_menu = [
+        {'href': 'products', 'name': 'all'},
+        {'href': 'products', 'name': 'home'},
+        {'href': 'products', 'name': 'office'},
+        {'href': 'products', 'name': 'furniture'},
+        {'href': 'products', 'name': 'modern'},
+        {'href': 'products', 'name': 'classic'},
+    ]
+    return render(request, 'mainapp/products.html', context={'links_arr': links_menu})
 
 
 def contacts(request):
