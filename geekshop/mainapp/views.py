@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Product, ProductCategory
 
 
 def main(request):
@@ -8,15 +7,15 @@ def main(request):
 
 
 def products(request):
-    links_menu = [
-        {'href': 'products', 'name': 'all'},
-        {'href': 'products', 'name': 'home'},
-        {'href': 'products', 'name': 'office'},
-        {'href': 'products', 'name': 'furniture'},
-        {'href': 'products', 'name': 'modern'},
-        {'href': 'products', 'name': 'classic'},
-    ]
-    return render(request, 'mainapp/products.html', context={'links_arr': links_menu})
+    title = 'Interior product'
+    categories = ProductCategory.objects.all()
+    products = Product.objects.all()
+    content = {
+        'title': title,
+        'categories': categories,
+        'products': products,
+    }
+    return render(request, 'mainapp/products.html', context=content)
 
 
 def contacts(request):
