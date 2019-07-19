@@ -32,6 +32,13 @@
             <div class="products-block">
                 {% for product in products %}
                     <a href="#" class="img-link"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.short_desc }}</p>
+                        <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
+                        <br>
+                        <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
+                    </div>
                 {% endfor %}
              </div>
              <div class="load"><a href="#" class="load-link"><img src="../../../static/img/load.png" alt=""></a></div>
