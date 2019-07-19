@@ -10,4 +10,12 @@
     <li class="nav-list">
         <a class="nav-search" href="#"><img src="{% static '/img/search.svg' %}" alt="Search"></a>
     </li>
+    <li class="nav-list">
+        <a class="nav-link" href="#">Товаров в корзине: </a>
+        {% if basket %}
+            {{ basket|length }}
+        {% else %}
+            0
+        {% endif %}
+    </li>
 </ul>
