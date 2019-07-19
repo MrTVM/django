@@ -1,0 +1,38 @@
+[
+  {
+    "category": "HOME",
+    "name": "Product1",
+    "price": 1000,
+    "quantity": 5
+  },
+  {
+    "category": "OFFICE",
+    "name": "Product2",
+    "price": 2000,
+    "quantity": 1
+  },
+  {
+    "category": "FURNITURE",
+    "name": "Product3",
+    "price": 5000,
+    "quantity": 7
+  },
+  {
+    "category": "MODERN",
+    "name": "Product4",
+    "price": 5000,
+    "quantity": 7
+  },
+  {
+    "category": "CLASSIC",
+    "name": "Product5",
+    "price": 5000,
+    "quantity": 7
+  },
+  {
+    "category": "HOME",
+    "name": "Product6",
+    "price": 1000,
+    "quantity": 15
+  }
+]

@@ -2,7 +2,7 @@
 
 <a href="/"><img src="{% static '/img/logo.svg' %}" alt="Interior"></a>
 <ul class="menu clearfix">
-    <li class="nav-list"><a class="nav-link" href="/">HOME</a></li>
+    <li class="nav-list"><a class="nav-link" href="{% url 'main' %}">HOME</a></li>
     <li class="nav-list"><a class="nav-link" href="{% url 'products' %}">PRODUCTS</a></li>
     <li class="nav-list"><a class="nav-link" href="#">HISTORY</a></li>
     <li class="nav-list"><a class="nav-link" href="#">SHOWROOM</a></li>
