@@ -1,0 +1,89 @@
+{% extends 'mainapp/base.html' %}
+{% load custom_tags %}
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <div class="top-nav padding-site">
+            <div class="navbar clearfix">
+                {% include 'mainapp/includes/inc_menu.html' %}
+                <h2 class="nav-content">Our Hot Products Range</h2>
+                {% if basket %}
+                <div>Количество продуктов в корзине: {{ request.user|basket_total_quantity }}</div>
+                <div>
+                    Общая стоимость корзины: {{ request.user|basket_total_cost }} руб.
+                    <a href="{% url 'basket:read' %}">Перейти в корзину</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="products">
+            <div class="title-menu clearfix">
+                <ul>
+                    <li class="title-list {% if request.resolver_match.kwargs.pk == 0 %}
+                                                title-list-active
+                                                {% endif %}">
+                        <a href="{% url 'products:index' %}" class="title-link">All</a>
+                    </li>
+                    {% for category in categories %}
+                        <li class="title-list {% if request.resolver_match.kwargs.pk == category.pk %}
+                                                title-list-active
+                                                {% endif %}">
+                            <a href="{% url 'products:category' category.pk %}" class="title-link">{{ category.name|title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="products-block">
+                {% for product in hot_products %}
+                    <a href="{% url 'product_detail' product.pk %}" class="img-link"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                {% endfor %}
+             </div>
+             <div class="load"><a href="#" class="load-link"><img src="../../../static/img/load.png" alt=""></a></div>
+         </div>
+         <div class="promo-product clearfix">
+             <div class="promo-content-1">
+                 <p class="promo-tag">exclusive</p>
+                 <h2 class="promo-name">Fishnet Chair</h2>
+                 <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.</p><a class="btn" href="#">Order us <img src="../../../static/img/arrow.svg" alt="Right"></a></div>
+             <div class="promo-content-2">
+                 <p class="promo-tag">exclusive</p>
+                 <h2 class="promo-name">Fishnet Chair</h2>
+                 <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.</p><a class="btn" href="#">Order us <img src="../../../static/img/arrow.svg" alt="Right"></a></div>
+         </div>
+         <div class="footer padding-site clearfix">
+             <div class="contact-us">
+                 <p class="footer-tag">Contact Us</p>
+                 <p class="footer-text">132A Bridge Road Richmond VIC Australia.
+                     <br>
+                     <br>Talk to us on 1300 132
+                     <br>info@interior.com</p>
+             </div>
+             <div class="information clearfix">
+                 <p class="footer-tag">Useful Information</p>
+                 <ul class="info-menu-left">
+                     <li class="info-list"><a href="#" class="info-link">Sales terms</a></li>
+                     <li class="info-list"><a href="#" class="info-link">Customer care</a></li>
+                     <li class="info-list"><a href="#" class="info-link">Delivery</a></li>
+                 </ul>
+                 <ul class="info-menu-right">
+                     <li class="info-list"><a href="#" class="info-link">Architect accounts</a></li>
+                     <li class="info-list"><a href="#" class="info-link">Careers</a></li>
+                     <li class="info-list"><a href="#" class="info-link">Exchanges&nbsp;&amp;&nbsp;returns</a></li>
+                 </ul>
+             </div>
+             <div class="suscribe">
+                 <p class="footer-tag">Let’s Stay in Touch!</p>
+                 <p class="footer-text">Suscribe to know about our latest news, products and special offers just for suscribers.</p>
+                 <input type="text" class="suscribe-input" placeholder="your email address"> </div>
+         </div>
+         <div class="copyright-block padding-site">
+             <div class="copyright-text">&copy;&nbsp;Copyright - INTERIOR {% now "Y" %}. All Rights Reserved.</div>
+             <div class="social"><a href=""><img src="../../../static/img/social-links.png" alt=""></a> </div>
+             <div class="copyright-text">Terms&nbsp;&amp;&nbsp;Conditions / Privacy policy&nbsp;&amp;&nbsp;Cookies</div>
+         </div>
+     </div>
+ {% endblock %}

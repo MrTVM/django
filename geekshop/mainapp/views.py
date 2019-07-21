@@ -4,8 +4,9 @@ from .models import Product, ProductCategory
 
 def main(request):
     title = 'Interior product'
+
     basket = []
-    if request.user:
+    if request.user.is_authenticated:
         basket = request.user.basket.all()
 
     content = {
@@ -21,20 +22,30 @@ def products(request, pk=None):
     products = Product.objects.all()
 
     basket = []
-    if request.user:
-        basket = request.user.basket.all()
+    if request.user.is_authenticated:
+       basket = request.user.basket.all()
 
-    if pk:
-        category = get_object_or_404(ProductCategory, pk=pk)
-        products = products.filter(category=category)
+    if pk or pk == 0:
+        if pk !=0:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = products.filter(category=category)
 
-    content = {
-        'title': title,
-        'categories': categories,
-        'products': products,
-        'basket': basket,
-    }
-    return render(request, 'mainapp/products.html', context=content)
+        content = {
+            'title': title,
+            'categories': categories,
+            'products': products,
+            'basket': None,
+        }
+        return render(request, 'mainapp/products.html', context=content)
+    else:
+        hot_products = products.filter(is_hot=True)
+        content = {
+            'title': title,
+            'hot_products': hot_products,
+            'categories': categories,
+            'basket': basket,
+        }
+        return render(request, 'mainapp/hot_products.html', content)
 
 
 def product_detail(request, pk=None):
@@ -43,7 +54,7 @@ def product_detail(request, pk=None):
     products = Product.objects.all()
 
     basket = []
-    if request.user:
+    if request.user.is_authenticated:
         basket = request.user.basket.all()
 
     if pk:
