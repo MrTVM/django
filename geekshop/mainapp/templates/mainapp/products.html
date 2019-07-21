@@ -15,14 +15,30 @@
         <div class="products">
             <div class="title-menu clearfix">
                 <ul>
+                    <li class="title-list {% if request.resolver_match.kwargs.pk == 0 %}
+                                                title-list-active
+                                                {% endif %}">
+                        <a href="{% url 'products:index' %}" class="title-link">All</a>
+                    </li>
                     {% for category in categories %}
-                        <li class="title-list"><a href="#" class="title-link">{{ category.name|title }}</a></li>
+                        <li class="title-list {% if request.resolver_match.kwargs.pk == category.pk %}
+                                                title-list-active
+                                                {% endif %}">
+                            <a href="{% url 'products:category' category.pk %}" class="title-link">{{ category.name|title }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="products-block">
                 {% for product in products %}
                     <a href="#" class="img-link"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.short_desc }}</p>
+                        <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
+                        <br>
+                        <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
+                    </div>
                 {% endfor %}
              </div>
              <div class="load"><a href="#" class="load-link"><img src="../../../static/img/load.png" alt=""></a></div>

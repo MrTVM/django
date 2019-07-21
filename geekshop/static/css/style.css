@@ -541,6 +541,10 @@ a.exclusive-link {
     border-bottom-color: #212121;
 }
 
+.title-list-active {
+    border-bottom-color: #212121;
+}
+
 .title-link {
     text-decoration: none;
     color: #6c6c6c;
