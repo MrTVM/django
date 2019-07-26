@@ -1,0 +1,15 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}
+<title>{{title|title}}</title>
+{% endblock %}
+
+{% block content %}
+<h2>Пользователь: </h2>
+    <a href="{% url 'admin_custom:user_delete' object.pk %}">Удалить пользователя</a>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Применить">
+    </form>
+{% endblock %}
