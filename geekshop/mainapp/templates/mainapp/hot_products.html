@@ -10,10 +10,13 @@
         <div class="top-nav padding-site">
             <div class="navbar clearfix">
                 {% include 'mainapp/includes/inc_menu.html' %}
-                <h2 class="nav-content">Our Products Range</h2>
+                <h2 class="nav-content">Our Hot Products Range</h2>
                 {% if basket %}
                 <div>Количество продуктов в корзине: {{ request.user|basket_total_quantity }}</div>
-                <div>Общая стоимость корзины: {{ request.user|basket_total_cost }} руб.</div>
+                <div>
+                    Общая стоимость корзины: {{ request.user|basket_total_cost }} руб.
+                    <a href="{% url 'basket:read' %}">Перейти в корзину</a>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -35,7 +38,7 @@
                 </ul>
             </div>
             <div class="products-block">
-                {% for product in products %}
+                {% for product in hot_products %}
                     <a href="{% url 'product_detail' product.pk %}" class="img-link"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
                 {% endfor %}
              </div>
