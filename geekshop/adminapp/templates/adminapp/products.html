@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<h2>Админка</h2>
+<div>
+    {% include 'adminapp/includes/inc_menu.html' %}
+</div>
+<h2>Категории</h2>
+{% include 'adminapp/includes/inc_category_menu.html' %}
+<h2>Продукты</h2>
+<a href="{% url 'admin_custom:product_create' %}">Создать новый продукт</a>
+<ul>
+    {% for object in object_list %}
+    <li>
+        <a href="{% url 'admin_custom:product_read' object.pk %}">{{ object.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
