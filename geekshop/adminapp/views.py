@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory
 from django.urls import reverse_lazy
@@ -6,7 +7,12 @@ from django.views.generic.list import ListView
 from .forms import ShopUserAdminEditForm, ShopUserAdminRegisterForm, ProductCategoryAdminForm
 
 
-class UsersListView(ListView):
+class IsSuperUserView(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+class UsersListView(IsSuperUserView, ListView):
     model = ShopUser
     template_name = 'adminapp/list.html'
     queryset = ShopUser.objects.all()
@@ -21,7 +27,7 @@ class UsersListView(ListView):
         return context
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(IsSuperUserView, UpdateView):
     model = ShopUser
     template_name = 'adminapp/object_update.html'
     success_url = reverse_lazy('admin_custom:users')
@@ -36,7 +42,7 @@ class UserUpdateView(UpdateView):
         return context
 
 
-class UserCreateView(CreateView):
+class UserCreateView(IsSuperUserView, CreateView):
     model = ShopUser
     template_name = 'adminapp/object_update.html'
     success_url = reverse_lazy('admin_custom:users')
@@ -49,7 +55,7 @@ class UserCreateView(CreateView):
         return context
 
 
-class UserDeleteView(DeleteView):
+class UserDeleteView(IsSuperUserView, DeleteView):
     model = ShopUser
     template_name = 'adminapp/object_delete.html'
     success_url = reverse_lazy('admin_custom:users')
@@ -61,7 +67,7 @@ class UserDeleteView(DeleteView):
         return context
 
 
-class ProductCategoriesListView(ListView):
+class ProductCategoriesListView(IsSuperUserView, ListView):
     model = ProductCategory
     template_name = 'adminapp/list.html'
 
@@ -75,7 +81,7 @@ class ProductCategoriesListView(ListView):
         return context
 
 
-class ProductCategoryUpdateView(UpdateView):
+class ProductCategoryUpdateView(IsSuperUserView, UpdateView):
     model = ProductCategory
     template_name = 'adminapp/object_update.html'
     success_url = reverse_lazy('admin_custom:categories')
@@ -90,7 +96,7 @@ class ProductCategoryUpdateView(UpdateView):
         return context
 
 
-class ProductCategoryDeleteView(DeleteView):
+class ProductCategoryDeleteView(IsSuperUserView, DeleteView):
     model = ProductCategory
     template_name = 'adminapp/object_delete.html'
     success_url = reverse_lazy('admin_custom:categories')
@@ -102,7 +108,7 @@ class ProductCategoryDeleteView(DeleteView):
         return context
 
 
-class ProductCategoryCreateView(CreateView):
+class ProductCategoryCreateView(IsSuperUserView, CreateView):
     model = ProductCategory
     template_name = 'adminapp/object_update.html'
     success_url = reverse_lazy('admin_custom:categories')
