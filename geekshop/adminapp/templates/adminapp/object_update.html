@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'adminapp/base.html' %}
+
+{% block title %}
+<title>{{title|title}}. Админка</title>
+{% endblock %}
+
+{% block content %}
+<h2>{{title}}</h2>
+{% if request.resolver_match.url_name != 'category_create' and request.resolver_match.url_name != 'user_create' %}
+    <a href="{% url delete_link object.pk %}">{{tag}}</a>
+{% endif %}
+<form class="form-horizontal" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Применить">
+</form>
+{% endblock %}

@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+<h2>{{ title|title }}</h2>
+<a href="{% url create_link %}">{{ create_tag }}</a>
+<ul>
+    {% for object in object_list %}
+    <li>
+        <a href="{% url update_link object.pk %}">
+            {% if request.resolver_match.url_name == 'users' %}
+                {{ object.username|title }}
+            {% else %}
+                {{ object.name|title }}
+            {% endif %}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

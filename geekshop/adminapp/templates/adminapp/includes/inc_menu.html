@@ -1,7 +1,7 @@
 <ul class="menu">
     <li>
         <a href="{% url 'main' %}">
-            на сайт
+            На сайт
         </a>
     </li>
     <li>
@@ -9,7 +9,15 @@
            class="{% if request.resolver_match.url_name == 'users' %}
                 active
               {% endif %}">
-            пользователи
+            Пользователи
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'admin_custom:categories' %}"
+           class="{% if request.resolver_match.url_name == 'categories' %}
+                active
+              {% endif %}">
+            Категории
         </a>
     </li>
 </ul>
