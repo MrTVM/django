@@ -6,7 +6,7 @@
 <ul>
     {% for object in object_list %}
     <li>
-        <a href="{% url update_link object.pk %}">
+        <a href="{% url update_link object.pk %}" {% if object.is_active == False %} style="opacity: 0.5" {% endif %}>
             {% if request.resolver_match.url_name == 'users' %}
                 {{ object.username|title }}
             {% else %}
