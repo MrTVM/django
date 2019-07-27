@@ -39,7 +39,21 @@
                     <a href="{% url 'product_detail' product.pk %}" class="img-link"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
                 {% endfor %}
              </div>
-             <div class="load"><a href="#" class="load-link"><img src="../../../static/img/load.png" alt=""></a></div>
+             <div class="paginator">
+                 {% if products.has_previous %}
+                     <a href="{% url 'products:page'
+                                 category.pk products.previous_page_number %}">
+                         <
+                     </a>
+                 {% endif %}
+                 <span class="current">страница {{ products.number }} из {{ products.paginator.num_pages }}</span>
+                 {% if products.has_next %}
+                     <a href="{% url 'products:page'
+                                 category.pk products.next_page_number %}">
+                         >
+                     </a>
+                 {% endif %}
+             </div>
          </div>
          <div class="promo-product clearfix">
              <div class="promo-content-1">
