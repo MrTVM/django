@@ -20,4 +20,12 @@
             Категории
         </a>
     </li>
+    <li>
+        <a href="{% url 'admin_custom:products' %}"
+           class="{% if request.resolver_match.url_name == 'products' %}
+                active
+              {% endif %}">
+            Продукты
+        </a>
+    </li>
 </ul>
